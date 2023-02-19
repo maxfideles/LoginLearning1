@@ -33,13 +33,13 @@ struct ContentView: View {
                         .frame(width: 183.8, height: 182.4)
                         .clipped()
                     .frame(width: 183.8, height: 182.4)
-                    .rotationEffect(.degrees(-10.2))
+                    .rotationEffect(.degrees(-10))
                     
                     //Ellipse 1
                     Ellipse()
                         .fill(Color(#colorLiteral(red: 0.04583333432674408, green: 0.04487847164273262, blue: 0.04487847164273262, alpha: 0.12999999523162842)))
                     .frame(width: 235, height: 118)
-                    .rotationEffect(.degrees(-18.5))
+                    .rotationEffect(.degrees(-25))
                 }
                 
                 
