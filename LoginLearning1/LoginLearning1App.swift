@@ -12,6 +12,7 @@ import Firebase
 @main
 struct LoginLearning1App: App {
     
+    @StateObject private var vm = LoginViewMode()
     init(){
         FirebaseApp.configure()
     }
@@ -19,6 +20,7 @@ struct LoginLearning1App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(vm)
         }
     }
 }

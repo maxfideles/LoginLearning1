@@ -9,11 +9,12 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @EnvironmentObject var Loginvm: LoginViewMode
+    
+   // @State private var email = ""
+    //@State private var password = ""
     
     var body: some View {
-        
         
         ZStack{
             Color.blue
@@ -47,17 +48,17 @@ struct ContentView: View {
                     .foregroundColor(.blue)
                     .font(.system(size: 40, weight: .bold, design: .rounded))
                 
-                TextField("Email",text: $email).foregroundColor(.black)
+                TextField("Email",text: $Loginvm.email).foregroundColor(.black)
                     .frame(width: 350)
                     .textFieldStyle(.roundedBorder)
                     
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $Loginvm.password)
                     .frame(width: 350)
                     .textFieldStyle(.roundedBorder)
                 
                 Button {
-                    register()
+                    Loginvm.register()
                 } label: {
                     Text("Sign Up")
                         .bold()
@@ -84,7 +85,7 @@ struct ContentView: View {
                 
                 
                 Button {
-                    login()
+                    Loginvm.login()
                 } label: {
                     Text("Already have an account? Login")
                         .bold()
@@ -97,26 +98,15 @@ struct ContentView: View {
         .ignoresSafeArea()
         
     }
-    func login(){
-        Auth.auth().signIn(withEmail: email, password: password) {result, error in if error != nil {
-            print(error!.localizedDescription)
-        }
-        }
-    }
-    
-    func register(){
-        Auth.auth().createUser(withEmail: email, password: password){result,error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-        }
-    }
+   //
+   ////
     
     
     
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView()
+                .environmentObject(LoginViewMode())
         }
     }
 }
